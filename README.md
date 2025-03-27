@@ -3,6 +3,8 @@
 ## 📝 Overview
 Stock Manager is a full-stack inventory management system that allows users to **add, update, and delete** products. It features a modern UI built with **React + Chakra UI**, a backend built with **Node.js + Express**, and a **MongoDB database** for storing product data.
 
+Public URL: [Stock Manager](https://stock-manager-production.up.railway.app)
+
 ---
 
 ## 📂 Project Structure
@@ -27,11 +29,11 @@ StockManager/
 │   │   └── product.route.js  # Express routes for API
 │   │── controllers/
 │   │   └── product.controller.js  # Handles CRUD logic
-│   │── server.js             # Express server
-│   │── .env                  # Environment variables
+│   └──server.js             # Express server
+│   
+│── .env                      # Environment variables (not shown)
 │── README.md                 # Project documentation
-│── .gitignore                # Files to ignore in Git
-└── .env.example              # Example environment variables
+└── .gitignore                # Files to ignore in Git
 ```
 
 ---
@@ -48,14 +50,16 @@ Clone the repository:
 ```sh
 git clone https://github.com/maxivega01/stock-manager.git
 cd stock-manager
+```
 
 Create a `.env` file in the `backend/` directory:
-```
+```sh
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
-NODE_ENV=development
 ```
 
+Run the build and start commands:
+```sh
 npm run build
 npm run start
 ```
@@ -92,7 +96,7 @@ Content-Type: application/json
 | Component     | Description |
 |--------------|------------|
 | `ProductCard` | Displays individual products |
-| `Navbar` | Top navigation bar |
+| `NavBar` | Top navigation bar |
 | `ProductGrid` | Grid layout for displaying products |
 | `Dialog` | Modal used for editing products |
 | `Toaster` | Notifications for success/errors |
@@ -105,28 +109,20 @@ Content-Type: application/json
 
 ## 🛠️ Deployment
 
-### Frontend Deployment
-```sh
-cd frontend
-npm run build
-```
-This generates a `dist/` folder with optimized assets.
+### Deploying to Railway
+1. **Sign up at [Railway](https://railway.app/)** and create a new project.
+2. Link the project to your **GitHub repository**.
+3. Add environment variables in Railway under **Settings > Variables**:
+   ```sh
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   NODE_ENV=production
+   ```
+4. Click **Deploy**, and Railway will automatically build and host the project.
 
-### Backend Deployment
-1. Deploy the backend using **Railway, Render, or a VPS (like DigitalOcean)**.
-2. Ensure MongoDB is hosted online (MongoDB Atlas recommended).
-3. Run the backend in production:
-```sh
-NODE_ENV=production node server.js
-```
+**Note:** Since `.env` files are not included in GitHub (for security reasons), you must manually set these variables in Railway.
 
-### Serve Frontend with Backend
-Update `server.js`:
-```js
-if(process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, '/frontend/dist')));
-}
-```
+Public URL: [Stock Manager](https://stock-manager-production.up.railway.app)
 
 ---
 
@@ -152,6 +148,15 @@ Run:
 npm install
 ```
 
+### ❌ Missing `.env` Variables in Deployment
+**Error:**
+```sh
+Error: The `uri` parameter to `openUri()` must be a string, got "undefined".
+```
+**Fix:**
+- Ensure `.env` is **not ignored** in local development.
+- Add all environment variables in **Railway's settings**.
+
 ---
 
 ## 🔥 Future Improvements
@@ -163,12 +168,6 @@ npm install
 ---
 
 ## 💡 Contributors & Contact
-Made by [Your Name]. Feel free to contribute!
-GitHub: [your-repo-link]
-Email: [your-email]
-
----
-
-### Final Thoughts
-This documentation ensures **developers can easily set up, understand, and deploy the project**. 🚀
+Made by [Máximo Vega]. 
+GitHub: [[maxivega01](https://github.com/maxivega01)]
 
