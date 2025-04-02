@@ -21,6 +21,10 @@ export const createProduct = async (req, res) =>{
         return res.status(400).json({success:false, message:"Please provide all fields"})
     }
 
+    if(product.price < 0) {
+        return res.status(400).json({success:false, message:"The price must be upper than 0"})
+    }
+
     const newProduct = new Product(product)
 
     try {
@@ -43,6 +47,9 @@ export const updateProduct = async (req, res) =>{
         return res.status(400).json({success:false, message:"Please provide all fields"})
     }
 
+    if(product.price < 0) {
+        return res.status(400).json({success:false, message:"The price must be upper than 0"})
+    }
 
     if (!mongoose.Types.ObjectId.isValid(id)){
         return res.status(4040).json({success:false, message: "Invalid Product Id"})

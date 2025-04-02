@@ -9,6 +9,10 @@ export const useProductStore = create((set) => ({
             return { success: false, message: "Please fill all the fields." };
         }
 
+        if(newProduct.price < 0) {
+            return {success:false, message:"The price must be upper than 0"}
+        }
+
         const res = await fetch("/api/products", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -36,6 +40,11 @@ export const useProductStore = create((set) => ({
     },
 
     updateProduct: async (pid, updatedProduct) => {
+
+        if(updatedProduct.price < 0) {
+            return {success:false, message:"The price must be upper than 0"}
+        }
+
         const res = await fetch(`/api/products/${pid}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
